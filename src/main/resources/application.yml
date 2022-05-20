@@ -1,0 +1,16 @@
+server:
+  port: 9010
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://rm-2vcy0568969ib19wrro.mysql.cn-chengdu.rds.aliyuncs.com:3306/plugin_demo?serverTimezone=UTC
+      username: ku
+      password: Ku668985
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: t_
+      id-type: auto
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
