@@ -1,1 +1,5 @@
 target\
+/target/classes/mapper/PluginMapper.xml
+/target/classes/com/ym/utils/R.class
+/target/classes/com/ym/utils/ProjectExceptionAdvice.class
+/target/classes/com/ym/config/Swagger2Config.class
