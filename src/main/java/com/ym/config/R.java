@@ -20,10 +20,6 @@ public class R {
         this.data = data;
     }
 
-    public R(Boolean flag, String msg) {
-        this.flag = flag;
-        this.msg = msg;
-    }
 
     public R(Boolean flag, Object data, String msg) {
         this.flag = flag;

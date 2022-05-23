@@ -29,20 +29,20 @@ public class PluginsMapperTestCase {
         pluginMapper.insert(plugins);
     }
 
-    @Test
+ /*   @Test
     void testUpdate() {
         Plugins plugins = new Plugins();
-        plugins.setId(2);
+        plugins.setId(1);
         plugins.setName("jqueryaaa");
         plugins.setDescription("jquery框架");
         plugins.setCreator("ym");
         pluginMapper.updateById(plugins);
-    }
+    }*/
 
-    @Test
+/*    @Test
     void testDelete() {
         pluginMapper.deleteById(10);
-    }
+    }*/
 
     @Test
     void testGetAll() {

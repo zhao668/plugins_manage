@@ -7,6 +7,9 @@ spring:
       url: jdbc:mysql://rm-2vcy0568969ib19wrro.mysql.cn-chengdu.rds.aliyuncs.com:3306/plugin_demo?serverTimezone=UTC
       username: ku
       password: Ku668985
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 mybatis-plus:
   global-config:
     db-config:

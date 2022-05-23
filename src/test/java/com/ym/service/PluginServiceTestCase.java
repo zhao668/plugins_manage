@@ -26,7 +26,7 @@ public class PluginServiceTestCase {
         pluginService.save(plugins);
     }
 
-    @Test
+   /* @Test
     void testUpdate() {
         Plugins plugins = new Plugins();
         plugins.setId(13);
@@ -34,12 +34,12 @@ public class PluginServiceTestCase {
         plugins.setDescription("jquery框架");
         plugins.setCreator("ym");
         pluginService.updateById(plugins);
-    }
+    }*/
 
-    @Test
+  /*  @Test
     void testDelete() {
         pluginService.removeById(13);
-    }
+    }*/
 
     @Test
     void testGetAll() {
