@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ym.mapper.PluginMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ym.pojo.Plugins">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="avatar" property="avatar" />
+        <result column="creator" property="creator" />
+        <result column="updatetime" property="updatetime" />
+        <result column="installnum" property="installnum" />
+        <result column="description" property="description" />
+        <result column="likenum" property="likenum" />
+        <result column="support" property="support" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, avatar, creator, updatetime, installnum, description,likenum,support
+    </sql>
+
+    <delete id="deleteByUserId">
+        DELETE
+        FROM
+            t_user_plugin
+        WHERE
+            uid = ${uid}
+          AND pid = ${pid}
+    </delete>
+
+    <select id="findAllByUserId" resultMap="BaseResultMap">
+        SELECT
+            *
+        FROM
+            t_plugins p, t_user_plugin up
+        WHERE
+            up.uid = ${uid}
+          AND up.pid = p.id
+    </select>
+
+    <insert id="addByUserId">
+        INSERT INTO t_user_plugin
+        VALUES
+            ( ${uid},
+             ${pid})
+    </insert>
+</mapper>

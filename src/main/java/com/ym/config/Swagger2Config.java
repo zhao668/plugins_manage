@@ -24,7 +24,7 @@ public class Swagger2Config {
                         .version("1.0")
                         .build())
                 //分组名称
-                .groupName("2.X版本")
+                .groupName("1.X版本")
                 .select()
                 //这里指定Controller扫描包路径
                 .apis(RequestHandlerSelectors.basePackage("com.ym.controller"))

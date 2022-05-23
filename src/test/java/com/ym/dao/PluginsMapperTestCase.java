@@ -62,4 +62,19 @@ public class PluginsMapperTestCase {
         lqw.like(name!=null,Plugins::getName, name);
         pluginMapper.selectList(lqw);
     }
+
+    @Test
+    void testGetAllByUserId() {
+        pluginMapper.findAllByUserId(2);
+    }
+
+//    @Test
+//    void testDeleteByUserId() {
+//        pluginMapper.deleteByUserId(1,3);
+//    }
+
+    @Test
+    void testAddByUserId() {
+        pluginMapper.addByUserId(1,3);
+    }
 }
