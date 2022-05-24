@@ -38,4 +38,6 @@ public class Plugins {
     @ApiModelProperty(value = "技术支持")
     private String support;
 
+    @ApiModelProperty(value = "是否审核的标志")
+    private Integer flag;
 }

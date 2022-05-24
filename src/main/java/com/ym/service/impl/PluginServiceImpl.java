@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ym.mapper.PluginMapper;
 import com.ym.pojo.Plugins;
 import com.ym.service.IPluginService;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,4 +40,30 @@ public class PluginServiceImpl extends ServiceImpl<PluginMapper,Plugins> impleme
     public Boolean deleteByUserId(int uid, int pid) {
         return pluginMapper.deleteByUserId(uid, pid) > 0;
     }
+
+    @Override
+    public List<Plugins> listUnInstallByUserId(Integer uid) {
+        return pluginMapper.findUnInstallByUserId(uid);
+    }
+
+    @Override
+    public List<Plugins> listUnInstallByUserId(Integer uid, String name) {
+        if(Strings.isNotEmpty(name)){
+            return pluginMapper.findUnInstallByUserIdAndName(uid, name);
+        }else{
+            return pluginMapper.findUnInstallByUserId(uid);
+        }
+
+    }
+
+    @Override
+    public List<Plugins> listByUserId(Integer uid, String name) {
+        if(Strings.isNotEmpty(name)){
+            return pluginMapper.findAllByUserIdAndName(uid, name);
+        }else{
+            return pluginMapper.findAllByUserId(uid);
+        }
+    }
+
+
 }

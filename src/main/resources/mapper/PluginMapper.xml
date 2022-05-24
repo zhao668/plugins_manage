@@ -13,11 +13,12 @@
         <result column="description" property="description" />
         <result column="likenum" property="likenum" />
         <result column="support" property="support" />
+        <result column="flag" property="flag" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, avatar, creator, updatetime, installnum, description,likenum,support
+        id, name, avatar, creator, updatetime, installnum, description,likenum,support,flag
     </sql>
 
     <delete id="deleteByUserId">
@@ -37,6 +38,19 @@
         WHERE
             up.uid = ${uid}
           AND up.pid = p.id
+          AND p.flag = 1
+    </select>
+
+    <select id="findAllByUserIdAndName" resultMap="BaseResultMap">
+        SELECT
+            *
+        FROM
+            t_plugins p, t_user_plugin up
+        WHERE
+            up.uid = ${uid}
+          AND up.pid = p.id
+          AND p.flag = 1
+          AND   p.name LIKE concat('%', #{name}, '%')
     </select>
 
     <insert id="addByUserId">
@@ -45,4 +59,41 @@
             ( ${uid},
              ${pid})
     </insert>
+
+    <select id="findUnInstallByUserId" resultMap="BaseResultMap">
+        SELECT
+            *
+        FROM
+            t_plugins p
+        WHERE
+            p.flag = 1
+          AND   p.id NOT IN (
+                SELECT
+                    id
+                FROM
+                    t_plugins p,
+                    t_user_plugin up
+                WHERE
+                    up.uid = ${uid}
+                  AND up.pid = p.id)
+    </select>
+
+    <select id="findUnInstallByUserIdAndName" resultMap="BaseResultMap">
+        SELECT
+            *
+        FROM
+            t_plugins p
+        WHERE
+            p.flag = 1
+          AND   p.name LIKE concat('%', #{name}, '%')
+          AND   p.id NOT IN (
+            SELECT
+                id
+            FROM
+                t_plugins p,
+                t_user_plugin up
+            WHERE
+                up.uid = ${uid}
+              AND up.pid = p.id)
+    </select>
 </mapper>

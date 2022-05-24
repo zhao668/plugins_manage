@@ -15,4 +15,11 @@ public interface IPluginService extends IService<Plugins> {
     Boolean addByUserId(int uid, int pid);
 
     Boolean deleteByUserId(int uid, int pid);
+
+
+    List<Plugins> listUnInstallByUserId(Integer uid);
+
+    List<Plugins> listUnInstallByUserId(Integer uid, String name);
+
+    List<Plugins> listByUserId(Integer uid, String name);
 }

@@ -15,4 +15,11 @@ public interface PluginMapper extends BaseMapper<Plugins> {
    int deleteByUserId(int uid, int pid);
 
    int addByUserId(int uid, int pid);
+
+
+   List<Plugins> findUnInstallByUserId(Integer uid);
+
+   List<Plugins> findUnInstallByUserIdAndName(Integer uid, String name);
+
+   List<Plugins> findAllByUserIdAndName(Integer uid, String name);
 }

@@ -1,8 +1,8 @@
 package com.ym.controller;
 
-import com.ym.utils.R;
 import com.ym.pojo.Plugins;
 import com.ym.service.IPluginService;
+import com.ym.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,8 +57,15 @@ public class PluginController {
 
     //根据用户ID查询该用户的所有插件
     @GetMapping("/user/{uid}")
-    public R listByUserId(@PathVariable("uid") Integer uid){
-        List<Plugins> pluginsList = pluginService.listByUserId(uid);
+    public R listByUserId(@PathVariable("uid") Integer uid, String name){
+        List<Plugins> pluginsList = pluginService.listByUserId(uid, name);
+        return new R(true, pluginsList);
+    }
+
+    //根据用户ID查询该用户未安装的所有插件
+    @GetMapping("/user/uninstall/{uid}")
+    public R listUnInstall(@PathVariable("uid") Integer uid, String name){
+        List<Plugins> pluginsList = pluginService.listUnInstallByUserId(uid, name);
         return new R(true, pluginsList);
     }
 
@@ -75,4 +82,5 @@ public class PluginController {
         Boolean flag = pluginService.deleteByUserId(uid,pid);
         return new R(flag, flag ? "卸载插件成功" : "卸载插件失败");
     }
+
 }
