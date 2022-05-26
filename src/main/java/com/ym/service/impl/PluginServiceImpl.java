@@ -1,5 +1,6 @@
 package com.ym.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -63,6 +64,23 @@ public class PluginServiceImpl extends ServiceImpl<PluginMapper,Plugins> impleme
         }else{
             return pluginMapper.findAllByUserId(uid);
         }
+    }
+
+    //批量删除
+    @Override
+    public Boolean deleteByIds(long[] ids) {
+       return pluginMapper.deleteByIds(ids) > 0;
+    }
+
+    @Override
+    public IPage<Plugins> getPage(int currentPage, Integer pageSize, Plugins plugins) {
+        LambdaQueryWrapper<Plugins> lqw = new LambdaQueryWrapper<>();
+        lqw.like(Strings.isNotEmpty(plugins.getName()),Plugins::getName,plugins.getName());
+        lqw.like(Strings.isNotEmpty(plugins.getCreator()),Plugins::getCreator,plugins.getCreator());
+        lqw.eq(plugins.getFlag()>=0,Plugins::getFlag,plugins.getFlag());
+        IPage page = new Page(currentPage,pageSize);
+        pluginMapper.selectPage(page,lqw);
+        return page;
     }
 
 

@@ -22,4 +22,9 @@ public interface IPluginService extends IService<Plugins> {
     List<Plugins> listUnInstallByUserId(Integer uid, String name);
 
     List<Plugins> listByUserId(Integer uid, String name);
+
+    //批量删除
+    Boolean deleteByIds(long[] ids);
+
+    IPage<Plugins> getPage(int currentPage, Integer pageSize, Plugins plugins);
 }

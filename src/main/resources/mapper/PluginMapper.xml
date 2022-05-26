@@ -29,6 +29,13 @@
             uid = ${uid}
           AND pid = ${pid}
     </delete>
+<!--    批量删除-->
+    <delete id="deleteByIds" parameterType="Long">
+        delete from t_plugins where id in
+        <foreach collection="array" item="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </delete>
 
     <select id="findAllByUserId" resultMap="BaseResultMap">
         SELECT

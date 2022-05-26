@@ -1,5 +1,6 @@
 package com.ym.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ym.pojo.Plugins;
 import com.ym.service.IPluginService;
 import com.ym.utils.R;
@@ -37,9 +38,9 @@ public class PluginController {
     }
 
     //删除插件
-    @DeleteMapping("{id}")
-    public R delete(@PathVariable("id") Integer id){
-        Boolean flag = pluginService.removeById(id);
+    @DeleteMapping("{ids}")
+    public R delete(@PathVariable("ids") long[] ids){
+        Boolean flag = pluginService.deleteByIds(ids);
         return new R(flag, flag ? "删除成功" : "删除失败");
     }
 
@@ -51,8 +52,13 @@ public class PluginController {
 
     //分页查询插件
     @GetMapping("{currentPage}/{pageSize}")
-    public R getPage(@PathVariable("currentPage") Integer currentPage, @PathVariable("pageSize") Integer pageSize){
-        return new R(true, pluginService.getPage(currentPage, pageSize));
+    public R getPage(@PathVariable("currentPage") Integer currentPage, @PathVariable("pageSize") Integer pageSize, Plugins plugins){
+        IPage<Plugins> page = pluginService.getPage(currentPage, pageSize,plugins);
+        //如果当前页码值大于总页码值，那么重新执行查询操作，使用最大页码值作为当前页码值
+        if (currentPage > page.getPages()) {
+            page = pluginService.getPage(1, pageSize,plugins);
+        }
+        return new R(true, page);
     }
 
     //根据用户ID查询该用户的所有插件

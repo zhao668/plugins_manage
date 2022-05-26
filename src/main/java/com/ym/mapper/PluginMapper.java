@@ -22,4 +22,7 @@ public interface PluginMapper extends BaseMapper<Plugins> {
    List<Plugins> findUnInstallByUserIdAndName(Integer uid, String name);
 
    List<Plugins> findAllByUserIdAndName(Integer uid, String name);
+
+   //批量删除
+    int deleteByIds(long[] ids);
 }
