@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Data
@@ -24,7 +24,7 @@ public class Plugins {
     private String creator;
 
     @ApiModelProperty(value = "插件的最后一次更新时间")
-    private LocalDateTime updatetime;
+    private Date updatetime;
 
     @ApiModelProperty(value = "插件被安装的次数")
     private Integer installnum;

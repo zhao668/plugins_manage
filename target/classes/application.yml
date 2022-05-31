@@ -15,4 +15,13 @@ mybatis-plus:
     db-config:
       table-prefix: t_
       id-type: auto
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
+# 七牛云存储
+oss:
+  qiniu:
+    domain: http://rch0jzsly.hn-bkt.clouddn.com # 访问域名(默认使用七牛云测试域名)
+    accessKey: S4eool8UppkOi786EStCvMdRY56Iew9XxAMZneJq # 公钥
+    secretKey: McxPhcC1pLBBFagvwDv__pkqalL_cvz8d-HxmJ1r # 私钥
+    bucketName: pluginzjn  #存储空间名称

@@ -7,6 +7,7 @@ import com.ym.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -26,6 +27,7 @@ public class PluginController {
     //添加插件
     @PostMapping
     public R save(@RequestBody Plugins plugins){
+        plugins.setUpdatetime(new Date());
         Boolean flag = pluginService.save(plugins);
         return new R(flag, flag ? "添加成功" : "添加失败");
     }
@@ -33,6 +35,7 @@ public class PluginController {
     //更新插件
     @PutMapping
     public R update(@RequestBody Plugins plugins){
+        plugins.setUpdatetime(new Date());
         Boolean flag = pluginService.updateById(plugins);
         return new R(flag, flag ? "更新成功" : "更新失败");
     }
